@@ -1,0 +1,14 @@
+#+TITLE: Vita
+#+AUTHOR: ejrx
+
+My resume. 
+
+* Compiling
+*XeLaTeX* is used for typesetting. To compile to pdf, run =xelatex vita.tex=. 
+
+I use [[http://garamond.org][Garamond No. 8]] as my main font. Some other options, suggested by the original author, are **Minion** and **Myriad** by Adobe.
+
+* Other Examples
+The [[http://github.com/kjhealy/kjh-vita][original]] template has been pretty widely forked. I'd recommend checking out what [[http://github.com/kjhealy/kjh-vita/network][others]] have done for further inspiration.
+
+

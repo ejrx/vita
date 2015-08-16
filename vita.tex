@@ -1,0 +1,224 @@
+\documentclass[11pt,letterpaper]{article}
+
+\def\myauthor{Matthew E. Black}
+\def\mytitle{vita}
+\def\myemail{ejrx@outlook.com}
+\def\myweb{http://ejrx.github.io}
+\def\myphone{973-975-3366}
+\def\mykeywords{
+  resume, 
+  vita, 
+  curriculum vita, 
+  cv, 
+  matt, 
+  ejrx
+}
+
+\setlength\parindent{0pt}
+
+\newenvironment{itemize*}%
+{\begin{itemize}%
+  \setlength{\itemsep}{0pt}}%
+{\end{itemize}}
+
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\setlist{nolistsep,leftmargin=0.15in}
+\usepackage[log-declarations=false]{xparse}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage[no-math]{fontspec}
+\usepackage{microtype}
+\usepackage[margin=1in,top=1.125in,right=1in,left=2in]{geometry}
+\usepackage[strict]{changepage}
+\usepackage[
+  ocgcolorlinks,
+  urlcolor={[rgb]{0,0,0.54}},
+  unicode,
+  plainpages=false,
+  pdfpagelabels,
+  pdftitle={\mytitle},
+  pdfauthor={\myauthor},
+  pdfkeywords={\mykeywords}
+]{hyperref}
+
+% fix ocgcolor link breaking; thanks due to Benjamin Lerner (http://goo.gl/VZKR7M)
+\makeatletter
+\AtBeginDocument{%
+  \newlength{\temp@x}%
+  \newlength{\temp@y}%
+  \newlength{\temp@w}%
+  \newlength{\temp@h}%
+  \def\my@coords#1#2#3#4{%
+    \setlength{\temp@x}{#1}%
+    \setlength{\temp@y}{#2}%
+    \setlength{\temp@w}{#3}%
+    \setlength{\temp@h}{#4}%
+    \adjustlengths{}%
+    \my@pdfliteral{\strip@pt\temp@x\space\strip@pt\temp@y\space\strip@pt\temp@w\space\strip@pt\temp@h\space re}}%
+  \ifpdf
+    \typeout{In PDF mode}%
+    \def\my@pdfliteral#1{\pdfliteral page{#1}}% I don't know why % this command...
+    \def\adjustlengths{}%
+  \fi
+  \ifxetex
+    \def\my@pdfliteral #1{\special{pdf: literal direct #1}}% isn't equivalent to this one
+    \def\adjustlengths{\setlength{\temp@h}{-\temp@h}\addtolength{\temp@y}{1in}\addtolength{\temp@x}{-1in}}%
+  \fi%
+  \def\Hy@colorlink#1{%
+    \begingroup
+      \ifHy@ocgcolorlinks
+        \def\Hy@ocgcolor{#1}%
+        \my@pdfliteral{q}%
+        \my@pdfliteral{7 Tr}% Set text mode to clipping-only
+      \else
+        \HyColor@UseColor#1%
+      \fi
+  }%
+  \def\Hy@endcolorlink{%
+    \ifHy@ocgcolorlinks%
+      \my@pdfliteral{/OC/OCPrint BDC}%
+      \my@coords{0pt}{0pt}{\pdfpagewidth}{\pdfpageheight}%
+      \my@pdfliteral{F}% Fill clipping path (the url's text) with current color
+      \my@pdfliteral{EMC/OC/OCView BDC}%
+      \begingroup%
+        \expandafter\HyColor@UseColor\Hy@ocgcolor%
+        \my@coords{0pt}{0pt}{\pdfpagewidth}{\pdfpageheight}%
+        \my@pdfliteral{F}% Fill clipping path (the url's text) with \Hy@ocgcolor
+      \endgroup%
+      \my@pdfliteral{EMC}%
+      \my@pdfliteral{0 Tr}% Reset text to normal mode
+      \my@pdfliteral{Q}%
+    \fi
+    \endgroup
+  }%
+}
+\makeatother
+% end fixes
+
+\newcommand{\ML}{\textsc{Matlab}}
+
+\newcommand{\mhead}[1]{\leavevmode\marginpar{\sffamily\footnotesize #1}}
+\newcommand{\rdate}[1]{{ \hfill #1}}
+\renewcommand{\date}[1]{{#1}}
+\renewcommand{\labelitemi}{-} 
+
+\setmainfont[
+  BoldFont={GaramondNo8 Medium},
+]{GaramondNo8}
+\setsansfont[
+  Color=660000,
+]{GaramondNo8}
+\setmonofont[Scale=0.85]{FontAwesome}
+
+\makeatletter % fix for \hrulefill w/ mathdesign package
+\def\hrulefill{\leavevmode\leaders \hrule height \rulethickness \hfill\kern\z@}
+\makeatletter
+
+\begin{document}\flushbottom
+\pagestyle{fancy} \setlength\headwidth{6.5in}
+\rhead{\textsc{\myauthor—R\'{e}sum\'{e}—\thepage{} of \pageref*{LastPage}}} \cfoot{}
+\thispagestyle{empty}
+\begin{adjustwidth}{-1in}{}
+{\Huge
+  {\textsc{%
+    {M}\kern-1.5ptatthew
+    {E}\kern-2pt.~%
+    {Black}
+  }}
+}
+\hfill\hfill\hfill
+{
+  \begin{minipage}[b]{2in}
+    \flushleft \footnotesize 
+    28 Alpine Drive \\  
+    Denville, NJ~~07834
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{1.2in}
+    \flushright \footnotesize 
+    \href{tel:\myphone}{\myphone} \\ %\texttt{}~
+    \href{mailto:\myemail}{\myemail} \\
+    \href{\myweb}{\myweb} \\
+  \end{minipage}
+}\par
+\hrulefill
+\end{adjustwidth}  
+\reversemarginpar 
+\setlength\marginparwidth{0.85in}
+\smallskip
+\mhead{Education}%
+\textbf{University of Maryland,} College Park, MD \newline
+\emph{Bachelor of Science, \href{http://bioe.umd.edu/}{Bioengineering}} \rdate{2009–2013}
+\begin{itemize*}
+  \item Cumulative GPA: 3.98/4.00; \emph{Magna Cum Laude}.
+  \item Capstone Project: Tracheal Occlusion STENTSOR Technology
+\end{itemize*}
+
+\bigskip
+\mhead{Research \newline Experience}%
+\textbf{Control of Miniaturized Systems Lab,} College Park, MD \newline
+\emph{Undergraduate Research Assistant} \rdate{2012-2013}
+\begin{itemize*}
+\item Developed image processing and data analysis programs for tracking nanoparticle movement through \emph{ex vivo} tissue samples.
+\item Designed and fabricated a system to orient and cool an array of electromagnets used to control nanoparticle movements in tissues.
+\end{itemize*}
+
+\medskip
+\textbf{Children's National Medical Center,} Washington, DC \newline
+\emph{Senior Academic Associate} \rdate{2012-2013}
+\begin{itemize*}
+\item Coordinated research activities for a phase-II clinical drug trial. While coordinator, CNMC was the top-enrolling study site, nationwide.
+\item Assisted with data management and patient recruitment for clinical trials in the Emergency Department.
+\end{itemize*}
+
+\medskip
+\textbf{Soft Materials Laboratory,} Hoboken, NJ \newline
+\emph{Undergraduate Research Assistant} \rdate{2012–2012}
+\begin{itemize*}
+\item Developed a method for synthesizing PDMS-silica nanocomposite gels for use in thermovoltaics research.
+\item Conducted and co-designed experiments examining the kinetics of the ``coffee ring effect'' in polymer solutions with colloidal suspensions.
+\end{itemize*}
+
+\bigskip
+\mhead{Professional \newline Experience}%
+\textbf{Memorial Sloan Kettering Cancer Center,} New York, NY \newline
+\emph{Data Analyst} \rdate{\textsc{Dec}~2014–\textsc{Present}}
+\begin{itemize*}
+  \item Develop and maintain backend database and data-access code for the hospital's internal quality assurance website, \href{http://mskcc.org/amplio-system}{Amplio}.
+  \item Create software solutions, as part of the \href{http://mskcc.org/research-advantage/core-facilities/web-survey-core}{WebCore} team, for the collection and analysis of patient-reported outcomes.
+\end{itemize*}
+
+\medskip
+\textbf{Spoon.net,} Seattle, WA \newline
+\emph{Program Manager Associate} \rdate{2013–2014}
+\begin{itemize*}
+\item Created, developed and led the management of Spoon's \href{http://seleniumhq.org}{Selenium}-based automated browser testing service.
+\end{itemize*}
+
+\bigskip
+\mhead{Software \newline Proficiencies}%
+\emph{Working knowledge}\newline%—comfortable using in a professional setting
+C\#,
+\ML{}/Octave,
+Python,
+R,
+SQL,
+HTML/CSS,
+\LaTeX{}
+
+\medskip
+\emph{Basic knowledge}\newline%—would require some training/use to refresh my memory
+C,
+Cadence PSpice,
+Coq,
+Haskell,
+LabView,
+SolidWorks
+
+\bigskip
+\mhead{Publications}%
+\par\vspace{-\baselineskip}E. Senses, \textbf{Black, M.}, T. Cunningham, S.A. Sukhishvili, \& P. Akcora~(\date{2013}).
+\href{}{Spatial ordering of colloids in a drying aqueous polymer droplet}. \emph{Langmuir}, 2013, 29(8) 2588-2594.
+\end{document}
